@@ -288,7 +288,8 @@
 </ol>
 ]]></content>
       <tags>
-        <tag>HOMER</tag>
+        <tag>test</tag>
+        <tag>BIOINFO,HOMER</tag>
       </tags>
   </entry>
   <entry>
@@ -361,10 +362,9 @@
 
 <p>DEBUG_HOST 一般是 debug01、debug02 和 debuggpu01。</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2023/06/19/test/</url>
-    <content><![CDATA[]]></content>
+      <tags>
+        <tag>test</tag>
+        <tag>server,NAS</tag>
+      </tags>
   </entry>
 </search>
