@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>HOMER Silly Insturction</title>
+    <url>/2023/06/19/HOMER-Silly-Instruction/</url>
+    <content><![CDATA[<h2 id="HOMER-基本功能"><a href="#HOMER-基本功能" class="headerlink" title="HOMER 基本功能"></a>HOMER 基本功能</h2><p>HOMER(Hypergeometric Optimization of Motif EnRichment)用于Motif identification和下一代测序分析，是一款<em>很方便</em>的软件。</p>
+<p>*<em>最不方便的地方在于安装… 笔者花了整整两天才部署完，有很多小坑。</em></p>
+<h3 id="一-homer在cygwin的安装"><a href="#一-homer在cygwin的安装" class="headerlink" title="一.homer在cygwin的安装"></a>一.homer在cygwin的安装</h3><p>网路上已有很多现成的安装教程资料了.这边仅记录一些在cygwin中安装的问题和解决方法.</p>
+<ol>
+<li><h4 id="cygwin安装"><a href="#cygwin安装" class="headerlink" title="cygwin安装"></a>cygwin安装</h4><p>下载安装好cygwin, <u>添加至系统环境变量</u>. PATH&#x3D;$PATH:&#x2F;….(安装路径)</p>
+<p>注意:安装时添加好<a href="http://mirrors.aliyun.com/cygwin/">http://mirrors.aliyun.com/cygwin/</a> 镜像网站,安装包会快一些.为了正常使用homer, 安装时添加好包:</p>
+<ul>
+<li><p>gcc</p>
+</li>
+<li><p>g++</p>
+</li>
+<li><p>make</p>
+</li>
+<li><p>perl</p>
+</li>
+<li><p>zip&#x2F;unzip</p>
+</li>
+<li><p>gzip&#x2F;gunzip</p>
+</li>
+<li><p>wget</p>
+<p>如果一开始缺了包不要紧, 重新运行cygwin的setup程序添加就可以了, 不是重新安装！</p>
+</li>
+</ul>
+<p>R中装好DESeq2, edgeR (一般生信用过R的都有吧)</p>
+</li>
+<li><h4 id="问题1"><a href="#问题1" class="headerlink" title="!!!问题1!!!"></a><strong>!!!问题1!!!</strong></h4><p>之后在用homer的时候, 发现没有motif的可视化, 查看log日志发现是缺少了seqlogo, 在python和R中装了也没用, 其实它是包含在weblogo这里的. (在homer官方安装说明中这一段已被设置灰色不再使用,但事实上还是需要使用的). <strong>所以这里还要安装几个依赖</strong>. 如果cygwin中不提供添加, 就用<code>apt-cyg install yourpackacge</code> 和以上一样全都要添加至 ~&#x2F;.bash_profile或者 ~&#x2F;.bashrc中.</p>
+<ul>
+<li>GMT (自带ghostscript,如果提示没安装就单独再下载一次gs)</li>
+<li>ncurses-libs, ncurses-devel, xz-devel, zlib-devel, HTSlib (samtools需要)</li>
+<li>samtools <a href="http://sourceforge.net/projects/samtools/files/">http://sourceforge.net/projects/samtools/files/</a> </li>
+<li>Weblogo (version 2.8.2, 不要用3 )<a href="http://weblogo.berkeley.edu/">http://weblogo.berkeley.edu/</a>  下载后解压,不需要自己安装。</li>
+<li>libpng12, apache2, uuid-dev (R), mysqldb (python)，httpd, hdf5, libuuid-devel (R), MySQL(python)  这边分debian&#x2F;ubuntu 和 CentOS, 这是blat依赖包。我用不着, 要是保险点都装吧。</li>
+<li><del>blat</del> 我没有成功安装, 如果不需要处理一些专门的CHIP-seq分析也用不着。</li>
+</ul>
+</li>
+<li><h4 id="下载homer正式安装"><a href="#下载homer正式安装" class="headerlink" title="下载homer正式安装"></a>下载homer正式安装</h4><ul>
+<li>homer官网. 下载configureHomer.pl <a href="http://homer.ucsd.edu/homer/configureHomer.pl">http://homer.ucsd.edu/homer/configureHomer.pl</a></li>
+<li><code>perl /Users/chucknorris/homer/configureHomer.pl -install</code><br>由于网络问题, 一直没成功. 后来莫名其妙用<code>perl /configureHomer.pl -install homer</code>下载安装好了。</li>
+</ul>
+</li>
+<li><h4 id="安装homer中的package数据库"><a href="#安装homer中的package数据库" class="headerlink" title="安装homer中的package数据库"></a>安装homer中的package数据库</h4><p>这边我用的是人的, 所以就以此举例.</p>
+<ul>
+<li>人基因组: <code>perl /configureHomer.pl -install hg38</code>  #很大,1.4G</li>
+<li>人启动子: <code>perl configureHomer.pl -install human</code></li>
+</ul>
+<p>如果需要其他的包, 可以用 <code>perl /configureHomer.pl -list</code> 查看有哪些可以安装的.</p>
+</li>
+</ol>
+<h3 id="二-homer的功能和使用"><a href="#二-homer的功能和使用" class="headerlink" title="二.homer的功能和使用"></a>二.homer的功能和使用</h3><h4 id="1-基于基因-x2F-启动子的motif分析"><a href="#1-基于基因-x2F-启动子的motif分析" class="headerlink" title="1.基于基因&#x2F;启动子的motif分析"></a>1.基于基因&#x2F;启动子的motif分析</h4><ol>
+<li><h5 id="使用findMotifs-pl"><a href="#使用findMotifs-pl" class="headerlink" title="使用findMotifs.pl"></a>使用<code>findMotifs.pl</code></h5><p>①功能: <strong>寻找目标基因启动子中富集的motif</strong>. e.g.受某处理上调的基因, 特定细胞的基因等等.</p>
+<p>②input: 一个你感兴趣的基因列表. 格式包括: </p>
+<ul>
+<li>NCBI Entrez Gene IDs</li>
+<li>NCBI Unigene IDs</li>
+<li>NCBI Refseq IDs (mRNA, protein)</li>
+<li>Ensembl Gene IDs</li>
+<li>Gene Symbols (i.e. Official Gene names, like “Nfkb1” )</li>
+<li>popular affymetrix probe IDs (MOE430, U133plus, U95, U75A)</li>
+</ul>
+<p>③运行命令</p>
+<p><code>findMotifs.pl &lt;inputfile.txt&gt; &lt;promoter set&gt; &lt;output directory&gt; [options]</code></p>
+<p>&lt;&gt;中的内容是必须的. 其中, <promoter set>在以下种类中选择:</p>
+<ul>
+<li>human (<em>Homo sapiens</em>)</li>
+<li>mouse (<em>Mus musculus</em>)</li>
+<li>rat (<em>Rattus norvegicus</em>)</li>
+<li>fly (<em>Drosophila melanogaster</em>)</li>
+<li>worm (<em>Caenorhabditis elegans</em>)</li>
+<li>zebrafish (<em>Danio rerio</em>)</li>
+<li>yeast (<em>Saccharomyces cerevisiae</em>)</li>
+</ul>
+<p>※一个例子:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#目标序列在人类mRNA上富集的motif</span></span><br><span class="line">findMotifs.pl geneslist.txt human-mRNA output/ -rna -len 8</span><br></pre></td></tr></table></figure>
+
+<p>④其他可选参数</p>
+<p>请参见 <a href="http://homer.ucsd.edu/homer/microarray/index.html">官方介绍</a> 的<em>Important motif finding parameters</em>部分:</p>
+<p>包括规定masked序列, <strong>自定义启动子区域</strong>, 删除冗余启动子, 筛选<strong>motif长度</strong>, motif个数, 只在＋链寻找motif, 寻找oligos富集, <strong>转换至人ID进行GO分析</strong>, 标准化CpG%, 消除lower order oligos带来的bias, 自定义背景基因, 在全局优化中允许的错配, 选择二项式&#x2F;超几何分布打分, CPU核数。</p>
+</li>
+<li><h5 id="返回找到的每一个motif的位置"><a href="#返回找到的每一个motif的位置" class="headerlink" title="返回找到的每一个motif的位置"></a>返回找到的每一个motif的位置</h5><p>①在<code>findMotifs.pl</code>中这个功能不是默认的.</p>
+<p>②input: 基因列表. 格式同上.</p>
+<p>③使用: 加上 <code>-find &lt;motif file&gt;</code>参数. 这个文件(.motif)在初始的分析中可以得到。</p>
+<p>※一个例子:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#目标序列在人类mRNA上富集的motif</span></span><br><span class="line">findMotifs.pl geneslist.txt human output/  -find motifs.motif &gt;  output.txt</span><br></pre></td></tr></table></figure>
+
+<p>③运行结果&#x2F;输出内容:</p>
+<ol>
+<li>Peak&#x2F;Region ID</li>
+<li>Offset from the TSS</li>
+<li>Sequence of the site</li>
+<li>Name of the Motif</li>
+<li>Strand</li>
+<li>Motif Score (log odds score of the motif matrix, higher scores are better matches)</li>
+</ol>
+</li>
+<li><h5 id="使用annotatePeaks-pl"><a href="#使用annotatePeaks-pl" class="headerlink" title="使用annotatePeaks.pl"></a>使用<code>annotatePeaks.pl</code></h5><p>①功能: 注释peaks, 及附近基因, GO分析, 量化ChIP-Seq tags密度, 绘制图.</p>
+<p>②input: HOMER peaks file, 或者BED file. 具体见这一段说明：</p>
+<blockquote>
+<p>HOMER peak files should have at minimum <u>5 columns</u> (separated by TABs, additional columns will be ignored):</p>
+<ul>
+<li>Column1: Unique Peak ID</li>
+<li>Column2: chromosome</li>
+<li>Column3: starting position</li>
+<li>Column4: ending position</li>
+<li>Column5: Strand (+&#x2F;- or 0&#x2F;1, where 0&#x3D;”+”, 1&#x3D;”-“)</li>
+</ul>
+<p>BED files should have at minimum <u>6 columns</u> (separated by TABs, additional columns will be ignored)</p>
+<ul>
+<li>Column1: chromosome</li>
+<li>Column2: starting position</li>
+<li>Column3: ending position</li>
+<li>Column4: Unique Peak ID</li>
+<li>Column5: not used</li>
+<li>Column6: Strand (+&#x2F;- or 0&#x2F;1, where 0&#x3D;”+”, 1&#x3D;”-“)</li>
+</ul>
+<p>In theory, HOMER will accept BED files with only 4 columns (+&#x2F;- in the 4th column), and files without unique IDs, but this is NOT recommended. For one, if you don’t have unique IDs for your regions, it’s hard to go back and figure out which region contains which peak.</p>
+<p>※mac中可以用homer的<code>changeNewLine.pl &lt;filename&gt;</code>转换文件格式。</p>
+</blockquote>
+<p>③使用：</p>
+<p><code>annotatePeaks.pl &lt;peak/BED file&gt; &lt;genome&gt; [options] &gt; &lt;output file&gt;</code></p>
+<p><code>annotatePeaks.pl tss &lt;promoter set&gt; -m &lt;motif file&gt; &lt;output directory&gt;</code></p>
+<p>※例子:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#i.基本的注释Genomic Annotation</span></span><br><span class="line">annotatePeaks.pl peaks.txt hg38 &gt; output.txt</span><br><span class="line"><span class="comment">#ii.在TSS而非峰模式下分析转录起始位点</span></span><br><span class="line">annotatePeaks.pl tss hg38 -size -300,50 -m motifs.motif &gt; output.txt</span><br><span class="line"><span class="comment">#iii.在peaks附近寻找motif</span></span><br><span class="line">annotatePeaks.pl peaks.txt mm8 -size 200 -m ms1.motif [cebp.motif] &gt; output.txt</span><br><span class="line"><span class="comment">#iii加上-mbed motif.bed 可以生成bed文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#iv.在peaks1中找到最近的peaks2 ???不是很清楚使用实例???</span></span><br><span class="line">... -p &lt;peak file 1&gt; [peak file 2] [-pdist] [-pcount] [-size]</span><br></pre></td></tr></table></figure>
+
+<p>④输出结果</p>
+<p>包括: 峰值是否在TSS (default -1kb ~ +100bp), TTS(default -100 bp to +1kb), CDS Exons, 5’ UTR Exons, 3’ UTR Exons, Introns, Intergenic, *CpG Islands,  *Repeats ( *在Detailed Annotation选项中)</p>
+<blockquote>
+<ol>
+<li>Peak ID</li>
+<li>Chromosome</li>
+<li>Peak start position</li>
+<li>Peak end position</li>
+<li>Strand</li>
+<li>Peak Score</li>
+<li>FDR&#x2F;Peak Focus Ratio&#x2F;Region Size</li>
+<li>Annotation (i.e. Exon, Intron, …)</li>
+<li>Detailed Annotation (Exon, Intron etc. + CpG Islands, repeats, etc.)</li>
+<li>Distance to nearest RefSeq TSS</li>
+<li>Nearest TSS: Native ID of annotation file</li>
+<li>Nearest TSS: Entrez Gene ID</li>
+<li>Nearest TSS: Unigene ID</li>
+<li>Nearest TSS: RefSeq ID</li>
+<li>Nearest TSS: Ensembl ID</li>
+<li>Nearest TSS: Gene Symbol</li>
+<li>Nearest TSS: Gene Aliases</li>
+<li>Nearest TSS: Gene description</li>
+<li>Additional columns depend on options selected when running the program.</li>
+</ol>
+</blockquote>
+<p>⑤可选参数</p>
+<ul>
+<li><p><code>annotation.pl &lt;peak file&gt; &lt;genome&gt; -gene &lt;gene data file&gt;  &gt; output.txt</code></p>
+<p>根据peaks最近的注释TSS, <strong>向peaks添加<u>特定基因</u>的信息</strong>。</p>
+</li>
+<li><p>有关diagram plot 详见: <a href="http://homer.ucsd.edu/homer/ngs/quantification.html">ann可视化</a></p>
+<p>※一些例子. 用excel打开, 作图 (除了热图)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">###scatter</span></span><br><span class="line"><span class="comment">#me1和me3在小鼠胚胎干细胞峰peaks附近的分布 *log--&gt; -log2</span></span><br><span class="line">annotatePeaks.pl peaks.txt mm8 -size 1000 -d H3K4me1-ChIP-Seq/ H3K4me3-ChIP-Seq/ &gt; output.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">###hist</span></span><br><span class="line"><span class="comment">#TSS相关的Motif YY1的分布</span></span><br><span class="line">annotatePeaks.pl tss mm9 -size -500,250 -hist 10 -m yy1.motif &gt; output.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">###positions ???目录下的tags是什么类型的文件??? 5‘tag</span></span><br><span class="line"><span class="comment">#motifs near peaks</span></span><br><span class="line">annotatePeaks.pl peaks.txt hg18 -size 6000 -hist 25 -m &lt;are.motif&gt; [fox.motif ap1.motif]</span><br><span class="line"><span class="comment">#genes/tags near peaks</span></span><br><span class="line">annotatePeaks.pl &lt;peak file&gt; &lt;genome&gt; -size &lt;<span class="comment">#&gt; -hist &lt;#&gt; -d &lt;tag directory 1&gt; [tag directory2] ... -m &lt;motif 1&gt; &lt;motif 2&gt; ... &gt;  &lt;output matrix file&gt;</span></span><br><span class="line">annotatePeaks.pl peaks.txt hg18 -size 6000 -hist 25 -d me1/ me2/ Mme3/ &gt; output.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">###heatmap --&gt; matrix --&gt; visualized with other software</span></span><br><span class="line">annotatePeaks.pl &lt;peak file&gt; &lt;genome&gt; -size &lt;..&gt; -hist &lt;..&gt; -ghist -d &lt;tag directory 1&gt; [tag directory2] ... &gt; &lt;output matrix file&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>TSS相关的Motif YY1的分布例图:</p>
+<p><img src="S:\BlogProject\blog\source_posts\HOMER-Silly-Tutorials_pics\motifs.tssHistogram.png" alt="Motif TSS histogram YY1"></p>
+</li>
+</ol>
+<h4 id="2-基于基因组的分析"><a href="#2-基于基因组的分析" class="headerlink" title="2.基于基因组的分析"></a>2.基于基因组的分析</h4><ol>
+<li><h5 id="在基因组区域中寻找富集的motif"><a href="#在基因组区域中寻找富集的motif" class="headerlink" title="在基因组区域中寻找富集的motif"></a>在基因组区域中寻找富集的motif</h5><p>①input: HOMER peak file, BED file, 具体格式见前文引用。</p>
+<p>②使用:</p>
+<p><code>findMotifsGenome.pl &lt;peak/BED file&gt; &lt;genome&gt; &lt;output directory&gt; -size # [options]</code></p>
+<p>③输出结果:</p>
+<ul>
+<li><p>homerMotifs.motifs&lt;#&gt; :从头搜寻的motif, 信息有长度, 算法单独运行</p>
+</li>
+<li><p>homerMotifs.all.motifs : 全部的motifs</p>
+</li>
+<li><p>motifFindingParameters.txt : 键入的命令</p>
+</li>
+<li><p>knownResults.txt : 统计数据, 可在excel打开</p>
+</li>
+<li><p>seq.autonorm.tsv : lower-order oligo的自动标准化</p>
+</li>
+<li><p>homerResults.html : 从头搜寻motif的格式化</p>
+</li>
+<li><p>homerResults&#x2F; 上面的内容</p>
+</li>
+<li><p>knownResults.html: 已知的motif输出</p>
+</li>
+<li><p>knownResults&#x2F; 上面的内容</p>
+</li>
+</ul>
+<p>④可选参数详见:  <a href="http://homer.ucsd.edu/homer/ngs/peakMotifs.html">findMotifsGenome</a></p>
+<ul>
+<li><p>背景, motif长度, 用于motif搜寻的区域长度, 不搜索de novo的motif, 等等</p>
+</li>
+<li><p>重要的一个: <strong>-rna</strong> 用RNA数据, 输出mRNA motifs, 关于没有其他RNA数据库, 作者写了一句很可爱的话:</p>
+<blockquote>
+<p> I guess chuck roundhouse kicked all of the splicing and other RNA motifs into hard to find databases.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><h5 id="寻找具体motif的位置"><a href="#寻找具体motif的位置" class="headerlink" title="寻找具体motif的位置"></a>寻找具体motif的位置</h5><p>①在<code>findMotifsGenome.pl</code>中这个功能也不是默认的.</p>
+<p>②input： 从使用homer得到筛选你感兴趣的motifs之后, 使用 <code>-find &lt;motifile&gt;</code></p>
+<p>③使用:</p>
+<p>i.<code>findMotifsGenome.pl &lt;peaks.txt/bed&gt; &lt;genome&gt; /out -find &lt;motif file&gt; /output.txt</code></p>
+<p>ii.<code>annotatePeaks.pl  &lt;peaks&gt; &lt;genome&gt; -m motifs.motif &gt; output.txt</code></p>
+<p>④输出结果</p>
+<p>在i中:</p>
+<blockquote>
+<ol>
+<li>Peak&#x2F;Region ID</li>
+<li>Offset from the center of the region</li>
+<li>Sequence of the site</li>
+<li>Name of the Motif</li>
+<li>Strand</li>
+<li>Motif Score (log odds score of the motif matrix, higher scores are better matches)</li>
+</ol>
+</blockquote>
+<p>在ii中:</p>
+<blockquote>
+<ol>
+<li>Peak&#x2F;Region ID</li>
+<li>Chromosome</li>
+<li>Start</li>
+<li>End</li>
+<li>Strand of Peaks</li>
+</ol>
+<p>  6-18: annotation information</p>
+<ol start="19">
+<li>CpG%</li>
+<li>GC%</li>
+<li>Motif Instances<br>  …</li>
+</ol>
+</blockquote>
+<p>⑤可视化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#motif密度 -hist &lt;..&gt;</span></span><br><span class="line"></span><br><span class="line">annotatePeaks.pl peaks.txt hg38 -m m1.motif m2.motif -size 1000 -hist 10 &gt; output.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="3-在整个基因组中寻找motif"><a href="#3-在整个基因组中寻找motif" class="headerlink" title="3.在整个基因组中寻找motif"></a>3.在整个基因组中寻找motif</h4><ol>
+<li><h5 id="使用-scanMotifGenomeWide-pl"><a href="#使用-scanMotifGenomeWide-pl" class="headerlink" title="使用 scanMotifGenomeWide.pl"></a>使用 <code>scanMotifGenomeWide.pl</code></h5><p>①input: motif file</p>
+<p>②使用: </p>
+<p><code>scanMotifGenomeWide.pl &lt;motif file&gt; &lt;genome&gt; [options]</code></p>
+<p>※一个例子:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#输出为bed, 默认txt</span></span><br><span class="line">scanMotifGenomeWide.pl pu1.motif mm9 -bed &gt; pu1.sites.mm9.bed</span><br></pre></td></tr></table></figure>
+
+<p>③输出结果:</p>
+<blockquote>
+<p>Tab delimited text file (default):</p>
+<ol>
+<li>Site ID (motif name + number)</li>
+<li>chr</li>
+<li>start</li>
+<li>end</li>
+<li>strand</li>
+<li>log-odds score</li>
+<li>sequence</li>
+</ol>
+<p>BED (tab) format (use <strong>-bed</strong>):</p>
+<ol>
+<li>chr</li>
+<li>start</li>
+<li>end</li>
+<li>motif name</li>
+<li>log-odds score (will be floored to an integer)</li>
+<li>strand</li>
+</ol>
+</blockquote>
+<p>④可选参数详见<a href="http://homer.ucsd.edu/homer/motif/genomeWideMotifScan.html">genenomeWide</a></p>
+</li>
+</ol>
+<h4 id="4-在mRNA中找出RNA-motif"><a href="#4-在mRNA中找出RNA-motif" class="headerlink" title="4.在mRNA中找出RNA motif"></a>4.在mRNA中找出RNA motif</h4><p>基本的使用:在2.1已经提到了, 在<code>findMotifs.pl</code>和<code> and findMotifsGenome.pl</code>中加入<code>-rna</code>即可.</p>
+<ol>
+<li><h5 id="寻找RNA-motifs的Co-regulated基因列表"><a href="#寻找RNA-motifs的Co-regulated基因列表" class="headerlink" title="寻找RNA motifs的Co-regulated基因列表"></a>寻找RNA motifs的Co-regulated基因列表</h5><p>①使用</p>
+<p>※一个例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">findMotifs.pl mdownregulated.genes.txt human-mRNA Output/ -rna -len 8</span><br></pre></td></tr></table></figure>
+
+<p>其实规定了human-mRNA就不用再加<code>-rna</code>了。</p>
+<p>现在也尝试match人类的miRNA seeds (miRBase)</p>
+<p>②可选参数</p>
+<p>在<code>findMotifs.pl</code>中可以添加:</p>
+<ul>
+<li>-min &lt;#&gt;:要考虑的最小mRNA长度 (移除极短的mRNA序列)</li>
+<li>-max &lt;#&gt;:要考虑的最大mRNA长度 (删除非常长的RNA)</li>
+</ul>
+</li>
+<li><h5 id="分析motif-链特异性的genome区域"><a href="#分析motif-链特异性的genome区域" class="headerlink" title="分析motif 链特异性的genome区域"></a>分析motif 链特异性的genome区域</h5><p><code>findMotifsGenome.pl fox2.clip.bed hg17 MotifOutput -rna</code></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>HOMER</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/06/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NAS Guide</title>
+    <url>/2023/06/19/NAS-Guide/</url>
+    <content><![CDATA[<h1 id="允许用户的-ssh-连接"><a href="#允许用户的-ssh-连接" class="headerlink" title="允许用户的 ssh 连接"></a>允许用户的 ssh 连接</h1><p>由于群晖不允许普通用户使用 ssh 登录 NAS，而给普通用户 root 权限又太过危险，为了使普通用户也能在北极星上直接访问 NAS 并使用 scp 传输数据，并且提供诸如 ssh 隧道的功能，我们在 NAS 另行安装了一个 ssh 服务端，这样普通用户可以使用 22000 端口来登录。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -p 22000 <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;NAS_IP&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 scp 传输数据。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -P 22000 <span class="variable">$&#123;LOCAL_FILE&#125;</span> <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;NAS_IP&#125;</span>:<span class="variable">$&#123;REMOTE_PATH&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了保证每次 NAS 重启后 ssh 服务端也能跟着重启，将以下脚本加入 NAS 控制面版的 计划任务中，设置为每次重启时启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sleep</span> 10</span><br><span class="line"><span class="keyword">if</span> [ ! -d /opt/openssh ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">ln</span> -s /volume1/@openssh /opt/openssh</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">sed <span class="string">&#x27;s/UsePAM yes/#UsePAM yes/&#x27;</span> /etc/ssh/sshd_config | sed <span class="string">&#x27;s/AllowTcpForwarding no/AllowTcpForwarding yes/&#x27;</span> &gt; /volume1/@openssh/etc/sshd_config</span><br><span class="line"><span class="keyword">if</span> ! grep -q <span class="string">&quot;Privilege-separated&quot;</span> <span class="string">&quot;/etc/passwd&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin&#x27;</span> | <span class="built_in">tee</span> -a /etc/passwd</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> ! grep -q <span class="string">&quot;sshd:x:74:&quot;</span> <span class="string">&quot;/etc/group&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;sshd:x:74:&#x27;</span> | <span class="built_in">tee</span> -a /etc/group</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -i <span class="string">&quot;/^&#123;&#125;:/s/\/sbin\/nologin/\/bin\/sh/&quot;</span> /etc/passwd</span><br><span class="line">/opt/openssh/bin/sshd -p 22000</span><br></pre></td></tr></table></figure>
+
+<p>在运行时如果存在用户信息的变更（如新建用户、用户修改密码等会改变 &#x2F;etc&#x2F;passwd 文件的操作），&#x2F;etc&#x2F;passwd 会被重写导致用户无法登录，因此需要在计划任务中添加下面的脚本，每隔 10 分钟（可根据需要变更）修改 &#x2F;etc&#x2F;passwd 中 nologin 的设置。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -n <span class="string">&quot;/^&#123;&#125;:/p&quot;</span> /etc/passwd | <span class="built_in">sort</span> | grep -q <span class="string">&#x27;/sbin/nologin&#x27;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -i <span class="string">&quot;/^&#123;&#125;:/s/\/sbin\/nologin/\/bin\/sh/&quot;</span> /etc/passwd</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="NAS-作为中继访问北极星-login-和-debug-节点"><a href="#NAS-作为中继访问北极星-login-和-debug-节点" class="headerlink" title="NAS 作为中继访问北极星 login 和 debug 节点"></a>NAS 作为中继访问北极星 login 和 debug 节点</h1><p>北极星的集群由于受到堡垒机的保护，用户是无法访问 login 和 debug 节点的其他端口的，但是由于 login 节点具有访问外网的能力且能直接访问校园网内的 IP，因此我们可以使用同样存在于校园网内的 NAS 作为中继，实现访问其他端口的功能，从而能够使用一些本地 web 应用，如 jupyter。</p>
+<h2 id="使用-ssh-隧道"><a href="#使用-ssh-隧道" class="headerlink" title="使用 ssh 隧道"></a>使用 ssh 隧道</h2><ol>
+<li>服务器中运行 <code>ssh -p 22000 -f -N -R $&#123;REMOTE_PORT&#125;:localhost:$&#123;LOCAL_PORT&#125; $&#123;USER&#125;@$&#123;NAS_IP&#125;</code>，REMOTE_PORT 设为 NAS 上的中继端口，LOCAL_PORT 设为 login 节点上运行的需要转发的 web 服务端口。一般不允许使用 4000 以下的端口。</li>
+<li>本地建立到 NAS 的隧道<ol>
+<li>Linux 或 MAC 用户可以运行 <code>ssh -p 22000 -f -N -L $&#123;LOCAL_ACC_PORT&#125;:localhost:$&#123;REMOTE_PORT&#125; $&#123;USER&#125;@$&#123;NAS_IP&#125;</code>，REMOTE_PORT 设为 NAS 上的中继端口，和步骤 1 中的中继端口号相同。LOCAL_ACC_PORT 设为本地访问用的端口。</li>
+<li>Windowns 用户可以使用 XShell 或其他登录软件的 Tunneling 功能设置对应的端口号。</li>
+</ol>
+</li>
+<li>在浏览器地址栏输入 <code>localhost:$&#123;LOCAL_ACC_PORT&#125;</code> 即可访问。<br>上述使用过程建立的隧道不会自动关闭，可以使用命令 <code>ps -elf | grep &#39;ssh -p 22000&#39;</code> 来查看正在运行的进程并使用 kill 将其关闭。</li>
+</ol>
+<h2 id="FRP-转发"><a href="#FRP-转发" class="headerlink" title="FRP 转发"></a>FRP 转发</h2><p>注：参照<a href="https://www.ioiox.com/archives/86.html">一个frps教程</a>。</p>
+<ol>
+<li>建立 frps.ini 配置文件，将其上传到 NAS 上，目前是放在 <code>/homes/hanlabadmin/frps.ini</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">bind_port = 7000</span><br><span class="line">dashboard_addr = 0.0.0.0</span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = frps_admin</span><br><span class="line">dashboard_pwd = $&#123;DASH_BOARD_PASS&#125;</span><br><span class="line">log_file = /frp/frps.log</span><br><span class="line">log_level = info</span><br><span class="line">log_max_days = 3</span><br><span class="line">disable_log_color = false</span><br><span class="line">token = $&#123;FRPC_PASS&#125;</span><br><span class="line">allow_ports = 4000-50000</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在 NAS 管理界面左上角菜单中选择 docker，在注册表中搜索下载 stilleshan&#x2F;frps。</li>
+<li>在映像中找到下载完的镜像，点击启动。<ol>
+<li>选择高级设置，开启自动重新启动选项。</li>
+<li>存储空间中选择添加文件，选择 <code>/homes/hanlabadmin/frps.ini</code>，装载路径设为 <code>/frp/frps.ini</code> ，同样建立一个空的 frps.log 文件也加载上去方便查看转发记录。</li>
+<li>端口设置中，添加 7000, 7500 和其他用户要求的 RELAY_PORT 端口，本地端口和容器端口建议保持一致，容器端口必须在 4000 到 50000 之间。用户的端口由管理员手动添加，每次添加新端口都需要重新启动 docker 镜像，这是为了防止随意建立过多连接，frpc 文件中存储有 FRPC_PASS 容易被人窃取。</li>
+<li>完成配置后启动，可以在用浏览器打开 <code>$&#123;NAS_IP&#125;:7500</code> 输入 frps 配置文件中的 dashboard 用户名和密码查看运行情况。</li>
+</ol>
+</li>
+<li>在服务器上的用户使用命令 frpc -i frpc.ini 建立连接，其中的配置如下，修改 SESSION_NAME 为用户自定义名称，LOCAL_PORT 为北极星上的应用的监听端口，RELAY_PORT 是用于访问的 NAS 端口。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 7000</span><br><span class="line">server_addr = $&#123;NAS_IP&#125;</span><br><span class="line">token = $&#123;FRPC_PASS&#125;</span><br><span class="line"></span><br><span class="line">[$&#123;SESSION_NAME&#125;]</span><br><span class="line">local_port = $&#123;LOCAL_PORT&#125;</span><br><span class="line">remote_port = $&#123;RELAY_PORT&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>打开浏览器访问 <code>$&#123;NAS_IP&#125;:&#123;$RELAY_PORT&#125;</code> 即可访问服务器目录。</li>
+</ol>
+<h2 id="debug-上的连接"><a href="#debug-上的连接" class="headerlink" title="debug 上的连接"></a>debug 上的连接</h2><p>去往 debug 节点需要 login 节点作中转，直接在 login 节点上运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -f -N -L $&#123;LOCAL_PORT&#125;:localhost:$&#123;DEBUG_PORT&#125; $&#123;DEBUG_HOST&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DEBUG_HOST 一般是 debug01、debug02 和 debuggpu01。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2023/06/19/test/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+</search>
