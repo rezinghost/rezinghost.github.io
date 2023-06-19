@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="添加发表文章添加实验室新发表的文章只需在 Publication 资料库中点击新增文章并在编辑完成点击上面的发布文章按钮。但是由于使用了之前版本网页中标出作者名和杂志名的 Javascript 脚本，因此添加内容时需注意符合特定格式。   标题无用处，但一般采用发表文章全名。 跳转链接勾选后填入在线预览网址，统一使用 doi 链接避免某些期刊网站改版导致的链接失效。 内容摘要取消勾选自动提取，填入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="添加发表文章">
+<meta property="og:url" content="http://example.com/2023/06/19/web_paper/index.html">
+<meta property="og:site_name" content="Demo Draft">
+<meta property="og:description" content="添加发表文章添加实验室新发表的文章只需在 Publication 资料库中点击新增文章并在编辑完成点击上面的发布文章按钮。但是由于使用了之前版本网页中标出作者名和杂志名的 Javascript 脚本，因此添加内容时需注意符合特定格式。   标题无用处，但一般采用发表文章全名。 跳转链接勾选后填入在线预览网址，统一使用 doi 链接避免某些期刊网站改版导致的链接失效。 内容摘要取消勾选自动提取，填入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\web_newMember\add_publications.png">
+<meta property="article:published_time" content="2023-06-19T09:14:33.000Z">
+<meta property="article:modified_time" content="2023-06-19T11:25:45.705Z">
+<meta property="article:author" content="r3zgh0st">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="s:\BlogProject\blog\source_posts\web_newMember\add_publications.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>添加发表文章</title><meta name="robots" content="noindex">
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/06/19/web_paper/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/06/19/web_paper/&text=添加发表文章"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/06/19/web_paper/&is_video=false&description=添加发表文章"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=添加发表文章&body=Check out this article: http://example.com/2023/06/19/web_paper/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/06/19/web_paper/&name=添加发表文章&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/06/19/web_paper/&t=添加发表文章"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">添加发表文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        添加发表文章
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">r3zgh0st</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-19T09:14:33.000Z" class="dt-published" itemprop="datePublished">2023-06-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/web/" rel="tag">web</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="添加发表文章"><a href="#添加发表文章" class="headerlink" title="添加发表文章"></a>添加发表文章</h2><p>添加实验室新发表的文章只需在 Publication 资料库中点击新增文章并在编辑完成点击上面的发布文章按钮。但是由于使用了之前版本网页中标出作者名和杂志名的 Javascript 脚本，因此添加内容时需注意符合特定格式。</p>
+<p><img src="S:\BlogProject\blog\source_posts\web_newMember\add_publications.png" alt="添加新发表文章"></p>
+<ol>
+<li>标题无用处，但一般采用发表文章全名。</li>
+<li>跳转链接勾选后填入在线预览网址，统一使用 doi 链接避免某些期刊网站改版导致的链接失效。</li>
+<li>内容摘要取消勾选自动提取，填入特定格式的句子，需符合以下要求。<ol>
+<li>开头为作者名，以英文逗号加空格分隔’, ‘，最后两名作者之间可使用 ‘ and ‘ 分隔。作者名应为全名，以发表文章 pdf 内的格式为准。共同第一作者使用 ^ 标记，通讯作者使用 * 标记。列完全部作者名后使用英文句号作为结尾并空一格。</li>
+<li>文章全名，使用英文句号作为结尾并空一格。文章名字中可以添加如斜体 <code>&lt;i&gt;&lt;/i&gt;</code> 和 上标 <code>&lt;sup&gt;&lt;/sup&gt;</code>等 html 标记，但是加粗标记以及加粗斜体联用标记将被删除。</li>
+<li>发表杂志全名，使用英文逗号作为结尾并空一格，杂志全名中不得包含英文句号。</li>
+<li>3 个字母月份加 4 位数字年份的 online 时间，以英文句号作为结尾。</li>
+</ol>
+</li>
+<li>附件为发表文章的 pdf 格式文件，其命名为第一作者、杂志全名、发表年份，以英文句号连接。<ol>
+<li>如有额外文件如勘误或补充文件，需注意附件的顺序，第一个附件将被认为是文章。</li>
+<li>在勘误文件名称的年份后添加 Errata 后缀，参考格式为 XinyiWang.GenomeResearch.2017.Errata.pdf。更多勘误文件在 Errata 后额外添加数字，如 Errata2.pdf 等待。</li>
+<li>如果有第一作者在一年内在同一杂志上发表多篇文章，可考虑在名字后加数字后缀。</li>
+</ol>
+</li>
+<li>右上角的发表时间，填写 online 时间，日期和时间出于惯例和强迫症选1 日 12 时。清空活动时间。</li>
+</ol>
+<p>附使用到的正则表达式，方便出错时查询。</p>
+<ol>
+<li><p>作者名查询和加粗</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`(^|[ ,&gt;])(<span class="subst">$&#123;reg_str&#125;</span>)([*^,&lt;])`</span>);</span><br><span class="line">raw_str.<span class="title function_">search</span>(regex);</span><br><span class="line">raw_str.<span class="title function_">replace</span>(regex, <span class="string">&quot;$1&quot;</span> + <span class="string">&quot;$2&quot;</span>.<span class="title function_">bold</span>() + <span class="string">&quot;$3&quot;</span>)];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>杂志名查询</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/([.?] )([^.?]+?)(, [A-Z][a-z]&#123;2&#125; \d&#123;4&#125;\.|, \d&#123;4&#125;\.)/</span>;</span><br><span class="line">raw_str.<span class="title function_">replace</span>(regex, <span class="string">&quot;$1&quot;</span> + <span class="string">&quot;$2&quot;</span>.<span class="title function_">italics</span>().<span class="title function_">bold</span>() + <span class="string">&quot;$3&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加粗和加粗斜体联用标记的清除</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pub_str.<span class="title function_">replace</span>(<span class="regexp">/(&lt;b&gt;&lt;i&gt;|&lt;\/i&gt;&lt;\/b&gt;)/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">pub_str.<span class="title function_">replace</span>(<span class="regexp">/(&lt;b&gt;|&lt;\/b&gt;)/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>年份判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">innerText.<span class="title function_">match</span>(<span class="regexp">/\s*[A-Z][a-z]&#123;2&#125; (\d&#123;4&#125;)\.?/</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/readtest/">CZX_plz_read_this</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">添加发表文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/06/19/web_paper/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/06/19/web_paper/&text=添加发表文章"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/06/19/web_paper/&is_video=false&description=添加发表文章"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=添加发表文章&body=Check out this article: http://example.com/2023/06/19/web_paper/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/06/19/web_paper/&title=添加发表文章"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/06/19/web_paper/&name=添加发表文章&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/06/19/web_paper/&t=添加发表文章"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    r3zgh0st
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

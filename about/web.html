@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Hanlab实验室主页管理指北前言实验室网页迁移到 CQB 网站统一管理后，使用的是一套叫博达的网站建设系统，强烈不建议浪费太多时间学他这一套（除非打算毕业去用这套系统的高校当网站运维…），首先不是什么广泛使用的系统，其次一些迁移前后的代码协调起来也很麻烦，正常情况下需要做的就更新实验室成员页面、添加发表文章以及上传相册就足够了。 如果需要改变页面结构或者什么地方出了问题，先学习 HTML，CSS">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Demo Draft">
+<meta property="og:url" content="http://example.com/about/web.html">
+<meta property="og:site_name" content="Demo Draft">
+<meta property="og:description" content="Hanlab实验室主页管理指北前言实验室网页迁移到 CQB 网站统一管理后，使用的是一套叫博达的网站建设系统，强烈不建议浪费太多时间学他这一套（除非打算毕业去用这套系统的高校当网站运维…），首先不是什么广泛使用的系统，其次一些迁移前后的代码协调起来也很麻烦，正常情况下需要做的就更新实验室成员页面、添加发表文章以及上传相册就足够了。 如果需要改变页面结构或者什么地方出了问题，先学习 HTML，CSS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/imgs/main_page.png">
+<meta property="og:image" content="http://example.com/imgs/set_template.png">
+<meta property="og:image" content="http://example.com/imgs/article_manage.png">
+<meta property="og:image" content="http://example.com/imgs/add_publications.png">
+<meta property="og:image" content="http://example.com/imgs/multi_name.png">
+<meta property="og:image" content="z:\1lab\%E7%BD%91%E7%AB%99\LabWebGuide_pics\image-20230517132728579.png">
+<meta property="og:image" content="z:\1lab\%E7%BD%91%E7%AB%99\LabWebGuide_pics\image-20230517132733298.png">
+<meta property="og:image" content="z:\1lab\%E7%BD%91%E7%AB%99\LabWebGuide_pics\image-20230517132825050.png">
+<meta property="og:image" content="z:\1lab\%E7%BD%91%E7%AB%99\LabWebGuide_pics\image-20230517132843941.png">
+<meta property="article:published_time" content="2023-06-19T11:08:58.308Z">
+<meta property="article:modified_time" content="2023-06-19T10:04:40.881Z">
+<meta property="article:author" content="r3zgh0st">
+<meta property="article:tag" content="测试 博客 hexo markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/imgs/main_page.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Demo Draft</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/1.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Demo Draft</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a href="/projects/">项目</a></li><!--
+   --><!--
+     --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+   --><!--
+     --><li><a href="/tags/">tags</a></li><!--
+   --><!--
+     --><li><a href="/search/">搜索</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="Hanlab实验室主页管理指北"><a href="#Hanlab实验室主页管理指北" class="headerlink" title="Hanlab实验室主页管理指北"></a>Hanlab实验室主页管理指北</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实验室网页迁移到 CQB 网站统一管理后，使用的是一套叫博达的网站建设系统，强烈不建议浪费太多时间学他这一套（除非打算毕业去用这套系统的高校当网站运维…），首先不是什么广泛使用的系统，其次一些迁移前后的代码协调起来也很麻烦，正常情况下需要做的就更新实验室成员页面、添加发表文章以及上传相册就足够了。</p>
+<p>如果需要改变页面结构或者什么地方出了问题，先学习 HTML，CSS，Javascript 的语法，博达系统相关的可以参考博达的<a target="_blank" rel="noopener" href="https://www.vsbclub.com/">教程网站</a>，组件的语法<a target="_blank" rel="noopener" href="https://boda.pku.edu.cn/system/site/element/style/tpl_help/help_junior.html">初级</a>、<a target="_blank" rel="noopener" href="https://boda.pku.edu.cn/system/site/element/style/tpl_help/help_middle.html">中级</a>和<a target="_blank" rel="noopener" href="https://boda.pku.edu.cn/system/site/element/style/tpl_help/help_high.html">高级</a>。</p>
+<p>网站管理登录的地址是 <a target="_blank" rel="noopener" href="https://boda.pku.edu.cn/system/login.jsp">https://boda.pku.edu.cn/system/login.jsp</a> ，校外需要先登录北大 VPN 才可访问。</p>
+<p>用户名：190616856</p>
+<p>密码： zyCivB04ED-o</p>
+<p>登录后记得选择 hanlab ，另外两个定量生物学中心和定量生物学中心英文是韩老师在 CQB 网站内科研队伍页面的<a target="_blank" rel="noopener" href="https://cqb.pku.edu.cn/info/1002/1825.htm">中文</a>和<a target="_blank" rel="noopener" href="https://cqb.pku.edu.cn/cqben/info/1002/1769.htm">英文</a>介绍。上方导航栏选择的网站内容是编辑资料库的地方，而网站建设则既可以编辑资料库内容，也可以编辑模板和栏目设定。</p>
+<p><img src="/imgs/main_page.png" alt="登录选择界面"></p>
+<p>总的来说网站由模板定义基本的页面结构和使用的网页组件，栏目定义特定网址访问的是那个模板生成的网页（如 cqb.pku.edu.cn&#x2F;hanlab&#x2F;Team.htm这个网址访问的是 Team 和 TeamMember 这两个模板生成的网页）以及每个网页组件使用什么资料库作为生成来源，资料库存放具体的内容。</p>
+<p><img src="/imgs/set_template.png" alt="栏目模板设定界面"></p>
+<p>修改了网站的模板和栏目之后需要点击左下角的发布网站，否则只能通过预览网站查看更改。而一般管理者需要做到的的网站更新，只需要在资料库中添加新的文章即可。</p>
+<p><img src="/imgs/article_manage.png" alt="文章管理页面"></p>
+<hr>
+<h2 id="添加发表文章"><a href="#添加发表文章" class="headerlink" title="添加发表文章"></a>添加发表文章</h2><p>添加实验室新发表的文章只需在 Publication 资料库中点击新增文章并在编辑完成点击上面的发布文章按钮。但是由于使用了之前版本网页中标出作者名和杂志名的 Javascript 脚本，因此添加内容时需注意符合特定格式。</p>
+<p><img src="/imgs/add_publications.png" alt="添加新发表文章"></p>
+<ol>
+<li>标题无用处，但一般采用发表文章全名。</li>
+<li>跳转链接勾选后填入在线预览网址，统一使用 doi 链接避免某些期刊网站改版导致的链接失效。</li>
+<li>内容摘要取消勾选自动提取，填入特定格式的句子，需符合以下要求。<ol>
+<li>开头为作者名，以英文逗号加空格分隔’, ‘，最后两名作者之间可使用 ‘ and ‘ 分隔。作者名应为全名，以发表文章 pdf 内的格式为准。共同第一作者使用 ^ 标记，通讯作者使用 * 标记。列完全部作者名后使用英文句号作为结尾并空一格。</li>
+<li>文章全名，使用英文句号作为结尾并空一格。文章名字中可以添加如斜体 <code>&lt;i&gt;&lt;/i&gt;</code> 和 上标 <code>&lt;sup&gt;&lt;/sup&gt;</code>等 html 标记，但是加粗标记以及加粗斜体联用标记将被删除。</li>
+<li>发表杂志全名，使用英文逗号作为结尾并空一格，杂志全名中不得包含英文句号。</li>
+<li>3 个字母月份加 4 位数字年份的 online 时间，以英文句号作为结尾。</li>
+</ol>
+</li>
+<li>附件为发表文章的 pdf 格式文件，其命名为第一作者、杂志全名、发表年份，以英文句号连接。<ol>
+<li>如有额外文件如勘误或补充文件，需注意附件的顺序，第一个附件将被认为是文章。</li>
+<li>在勘误文件名称的年份后添加 Errata 后缀，参考格式为 XinyiWang.GenomeResearch.2017.Errata.pdf。更多勘误文件在 Errata 后额外添加数字，如 Errata2.pdf 等待。</li>
+<li>如果有第一作者在一年内在同一杂志上发表多篇文章，可考虑在名字后加数字后缀。</li>
+</ol>
+</li>
+<li>右上角的发表时间，填写 online 时间，日期和时间出于惯例和强迫症选1 日 12 时。清空活动时间。</li>
+</ol>
+<p>附使用到的正则表达式，方便出错时查询。</p>
+<ol>
+<li>作者名查询和加粗<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`(^|[ ,&gt;])(<span class="subst">$&#123;reg_str&#125;</span>)([*^,&lt;])`</span>);</span><br><span class="line">raw_str.<span class="title function_">search</span>(regex);</span><br><span class="line">raw_str.<span class="title function_">replace</span>(regex, <span class="string">&quot;$1&quot;</span> + <span class="string">&quot;$2&quot;</span>.<span class="title function_">bold</span>() + <span class="string">&quot;$3&quot;</span>)];</span><br></pre></td></tr></table></figure></li>
+<li>杂志名查询<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/([.?] )([^.?]+?)(, [A-Z][a-z]&#123;2&#125; \d&#123;4&#125;\.|, \d&#123;4&#125;\.)/</span>;</span><br><span class="line">raw_str.<span class="title function_">replace</span>(regex, <span class="string">&quot;$1&quot;</span> + <span class="string">&quot;$2&quot;</span>.<span class="title function_">italics</span>().<span class="title function_">bold</span>() + <span class="string">&quot;$3&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>加粗和加粗斜体联用标记的清除<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pub_str.<span class="title function_">replace</span>(<span class="regexp">/(&lt;b&gt;&lt;i&gt;|&lt;\/i&gt;&lt;\/b&gt;)/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">pub_str.<span class="title function_">replace</span>(<span class="regexp">/(&lt;b&gt;|&lt;\/b&gt;)/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>年份判断<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">innerText.<span class="title function_">match</span>(<span class="regexp">/\s*[A-Z][a-z]&#123;2&#125; (\d&#123;4&#125;)\.?/</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="添加新实验室成员介绍"><a href="#添加新实验室成员介绍" class="headerlink" title="添加新实验室成员介绍"></a>添加新实验室成员介绍</h2><p>添加实验室成员介绍需要在 Team 下的各个资料库如 Staff 和 Post doctorates 等添加新页面。标题为成员名字，<b>需要与发表文章条目中的名字相同，如果有多个不同格式名字，勾选副标题，将包括主名字在内的所有名字填入</b>，否则无法自动加粗发表文章列表中的作者名。</p>
+<p><img src="/imgs/multi_name.png" alt="多个作者名"></p>
+<p>由于使用了自动从 Publication 资料库中查找该成员发表的文章并插入的脚本，且需要保持不同页面之间样式的一致性，并不建议使用发表文章中的编辑功能，而是使用如下模板，填入成员相应内容后，在发表文章页面左上角点击切换成源代码，复制粘贴后使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">Role in the lab<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">Email: username@domain.com</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Experience<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>20xx.x - 20xx.x, Ph.D., student, Center for Quantitative Biology, Peking University.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>20xx.x - 20xx.x, B.S., xxxxxx University.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Research Focus<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">One line description</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Multi line description.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Multi line description.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Publications<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>XXX, XXX and XXX*. XXXXXX XXXXXX XXXXXX. XXX XXX, XXX 20XX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Personal Show<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Hobbies: XXX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Motto: XXX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>各个区域内容的补充说明</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">Role in the lab<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 如果没有提供邮箱或者邮箱停用可以删除下面这行 --&gt;</span></span><br><span class="line">Email: username@domain.com</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Experience<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>20xx.x - 20xx.x, Ph.D., student, Center for Quantitative Biology, Peking University.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>20xx.x - 20xx.x, B.S., xxxxxx University.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Research Focus<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    一些人提供了一段说明，那么放在 &lt;span&gt; 里，把 &lt;ul&gt; 删除，</span></span><br><span class="line"><span class="comment">    另一些提供的是多行，每行一点，那么放在 &lt;ul&gt; 的 &lt;li&gt; 里，把 &lt;span&gt; 删除，</span></span><br><span class="line"><span class="comment">    都有的分别填在各自标签里。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">One line description</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Multi line description.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Multi line description.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    注意，这个章节填写的是成员发表的不在 Publications 资料库里的文章，publist.js 脚本会在这里自动添加资料库里的条目，一般这里是博后或者工作人员填写他们进 Hanlab 之前或者合作发表但是韩老师认为不适合放在实验室主页的文章（比如韩老师不是通讯的，学生也不是共同第一作者的文章可能会这样）</span></span><br><span class="line"><span class="comment">    格式需符合发表文献的格式，如果作者名和title</span></span><br><span class="line"><span class="comment">    如果为空，则这个 &lt;h2&gt; 和 &lt;ol&gt; 都可以删除</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Publications<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>XXX, XXX and XXX*. XXXXXX XXXXXX XXXXXX. XXX XXX, XXX 20XX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Personal Show<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 没写的也可以删掉 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Hobbies: XXX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Motto: XXX.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这是给插入图片预留的地方 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>复制模板到源码编辑模式后，再点击一下源码按钮切换回编辑模式，光标移到最下方后点上面的上传图片按钮，上传图片，这里图片会自动居中，需要切换回源码模式改一下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/_vsl/5230F1DBC3714F1EBBDB2BA764C550AE/4ADE3AB9/xxxxxx?&quot;</span> <span class="attr">width</span>=<span class="string">&quot;500&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/_vsl/5230F1DBC3714F1EBBDB2BA764C550AE/4ADE3AB9/xxxxxx?&quot;</span> <span class="attr">width</span>=<span class="string">&quot;90%&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编辑完成后注意一下右上角的发表时间，Team 页面的左侧导航栏是按照发表时间从以前到现在这个顺序排的（和资料库中的显示顺序相反），未毕业的按进入实验室的时间填写，已经毕业的按照毕业的时间填写。</p>
+<p>这里很多要求其实只是为了保持前后风格统一的强迫症，如果有个性化需求的其实也可以按照自己的喜好编写任意形式的内容，唯一需要注意的是自动插入实验室发表文献的脚本需要一个 <code>&lt;h2&gt;Publication&lt;/h2&gt;</code> 的标题，和下面 <code>&lt;ol&gt;</code> 里的发表文献，如果没有会在 <code>&lt;h2&gt;Personal Show&lt;/h2&gt;</code> 前创建一个。</p>
+<h2 id="实验室成员状态变更（离开实验室）"><a href="#实验室成员状态变更（离开实验室）" class="headerlink" title="实验室成员状态变更（离开实验室）"></a>实验室成员状态变更（离开实验室）</h2><ol>
+<li>实验室内的定位需改成 Alumnus 或者 Alumna（也许删掉更好？）。</li>
+<li>在经历的实验室中把 present 改成毕业的年月，如果是 Ph.D. student 改成 Ph.D.。</li>
+<li>右上角的发表时间改成毕业时间。</li>
+<li>从原本的资料库中剪切，粘贴移动到 Alumni 资料库中。</li>
+<li>Alumni 资料库选中粘贴过去的项目，点击发布（默认是不发布的）。</li>
+</ol>
+<h2 id="加入网页指引"><a href="#加入网页指引" class="headerlink" title="加入网页指引"></a>加入网页指引</h2><p><img src="Z:\1lab\网站\LabWebGuide_pics\image-20230517132728579.png" alt="image-20230517132728579"></p>
+<p><img src="Z:\1lab\网站\LabWebGuide_pics\image-20230517132733298.png" alt="image-20230517132733298"></p>
+<p>在此填写标题，链接；</p>
+<p>若有有pdf，则添加。</p>
+<p><img src="Z:\1lab\网站\LabWebGuide_pics\image-20230517132825050.png" alt="image-20230517132825050"></p>
+<p>检查出现在首页此处。</p>
+<p><img src="Z:\1lab\网站\LabWebGuide_pics\image-20230517132843941.png" alt="image-20230517132843941"></p>
+<p>PositionAd 和 Contact 偷懒统一放在 Home 了.</p>
+
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    r3zgh0st
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

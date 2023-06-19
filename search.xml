@@ -4,32 +4,36 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2023/06/19/test/"/>
-      <url>/2023/06/19/test/</url>
+      <title>实验室网站管理</title>
+      <link href="/2023/06/19/web/"/>
+      <url>/2023/06/19/web/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<a href="/2023/06/19/web_guide/" title="home新闻和会议告示">首页</a><a href="/2023/06/19/web_paper/" title="添加发表文章">文章</a><a href="/2023/06/19/web_member/" title="实验室成员编辑">实验室成员</a>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>NAS Guide</title>
-      <link href="/2023/06/19/NAS-Guide/"/>
-      <url>/2023/06/19/NAS-Guide/</url>
+      <title>test</title>
+      <link href="/2023/06/19/test/"/>
+      <url>/2023/06/19/test/</url>
       
-        <content type="html"><![CDATA[<h1 id="允许用户的-ssh-连接"><a href="#允许用户的-ssh-连接" class="headerlink" title="允许用户的 ssh 连接"></a>允许用户的 ssh 连接</h1><p>由于群晖不允许普通用户使用 ssh 登录 NAS，而给普通用户 root 权限又太过危险，为了使普通用户也能在北极星上直接访问 NAS 并使用 scp 传输数据，并且提供诸如 ssh 隧道的功能，我们在 NAS 另行安装了一个 ssh 服务端，这样普通用户可以使用 22000 端口来登录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 22000 <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;NAS_IP&#125;</span></span><br></pre></td></tr></table></figure><p>使用 scp 传输数据。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 22000 <span class="variable">$&#123;LOCAL_FILE&#125;</span> <span class="variable">$&#123;USER&#125;</span>@<span class="variable">$&#123;NAS_IP&#125;</span>:<span class="variable">$&#123;REMOTE_PATH&#125;</span></span><br></pre></td></tr></table></figure><p>为了保证每次 NAS 重启后 ssh 服务端也能跟着重启，将以下脚本加入 NAS 控制面版的 计划任务中，设置为每次重启时启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sleep</span> 10</span><br><span class="line"><span class="keyword">if</span> [ ! -d /opt/openssh ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">ln</span> -s /volume1/@openssh /opt/openssh</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">sed <span class="string">&#x27;s/UsePAM yes/#UsePAM yes/&#x27;</span> /etc/ssh/sshd_config | sed <span class="string">&#x27;s/AllowTcpForwarding no/AllowTcpForwarding yes/&#x27;</span> &gt; /volume1/@openssh/etc/sshd_config</span><br><span class="line"><span class="keyword">if</span> ! grep -q <span class="string">&quot;Privilege-separated&quot;</span> <span class="string">&quot;/etc/passwd&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin&#x27;</span> | <span class="built_in">tee</span> -a /etc/passwd</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> ! grep -q <span class="string">&quot;sshd:x:74:&quot;</span> <span class="string">&quot;/etc/group&quot;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;sshd:x:74:&#x27;</span> | <span class="built_in">tee</span> -a /etc/group</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -i <span class="string">&quot;/^&#123;&#125;:/s/\/sbin\/nologin/\/bin\/sh/&quot;</span> /etc/passwd</span><br><span class="line">/opt/openssh/bin/sshd -p 22000</span><br></pre></td></tr></table></figure><p>在运行时如果存在用户信息的变更（如新建用户、用户修改密码等会改变 &#x2F;etc&#x2F;passwd 文件的操作），&#x2F;etc&#x2F;passwd 会被重写导致用户无法登录，因此需要在计划任务中添加下面的脚本，每隔 10 分钟（可根据需要变更）修改 &#x2F;etc&#x2F;passwd 中 nologin 的设置。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -n <span class="string">&quot;/^&#123;&#125;:/p&quot;</span> /etc/passwd | <span class="built_in">sort</span> | grep -q <span class="string">&#x27;/sbin/nologin&#x27;</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">ls</span> /var/services/homes | grep -v @ | grep -v <span class="string">&#x27;admin$&#x27;</span> | xargs -i sed -i <span class="string">&quot;/^&#123;&#125;:/s/\/sbin\/nologin/\/bin\/sh/&quot;</span> /etc/passwd</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><h1 id="NAS-作为中继访问北极星-login-和-debug-节点"><a href="#NAS-作为中继访问北极星-login-和-debug-节点" class="headerlink" title="NAS 作为中继访问北极星 login 和 debug 节点"></a>NAS 作为中继访问北极星 login 和 debug 节点</h1><p>北极星的集群由于受到堡垒机的保护，用户是无法访问 login 和 debug 节点的其他端口的，但是由于 login 节点具有访问外网的能力且能直接访问校园网内的 IP，因此我们可以使用同样存在于校园网内的 NAS 作为中继，实现访问其他端口的功能，从而能够使用一些本地 web 应用，如 jupyter。</p><h2 id="使用-ssh-隧道"><a href="#使用-ssh-隧道" class="headerlink" title="使用 ssh 隧道"></a>使用 ssh 隧道</h2><ol><li>服务器中运行 <code>ssh -p 22000 -f -N -R $&#123;REMOTE_PORT&#125;:localhost:$&#123;LOCAL_PORT&#125; $&#123;USER&#125;@$&#123;NAS_IP&#125;</code>，REMOTE_PORT 设为 NAS 上的中继端口，LOCAL_PORT 设为 login 节点上运行的需要转发的 web 服务端口。一般不允许使用 4000 以下的端口。</li><li>本地建立到 NAS 的隧道<ol><li>Linux 或 MAC 用户可以运行 <code>ssh -p 22000 -f -N -L $&#123;LOCAL_ACC_PORT&#125;:localhost:$&#123;REMOTE_PORT&#125; $&#123;USER&#125;@$&#123;NAS_IP&#125;</code>，REMOTE_PORT 设为 NAS 上的中继端口，和步骤 1 中的中继端口号相同。LOCAL_ACC_PORT 设为本地访问用的端口。</li><li>Windowns 用户可以使用 XShell 或其他登录软件的 Tunneling 功能设置对应的端口号。</li></ol></li><li>在浏览器地址栏输入 <code>localhost:$&#123;LOCAL_ACC_PORT&#125;</code> 即可访问。<br>上述使用过程建立的隧道不会自动关闭，可以使用命令 <code>ps -elf | grep &#39;ssh -p 22000&#39;</code> 来查看正在运行的进程并使用 kill 将其关闭。</li></ol><h2 id="FRP-转发"><a href="#FRP-转发" class="headerlink" title="FRP 转发"></a>FRP 转发</h2><p>注：参照<a href="https://www.ioiox.com/archives/86.html">一个frps教程</a>。</p><ol><li>建立 frps.ini 配置文件，将其上传到 NAS 上，目前是放在 <code>/homes/hanlabadmin/frps.ini</code></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">bind_port = 7000</span><br><span class="line">dashboard_addr = 0.0.0.0</span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = frps_admin</span><br><span class="line">dashboard_pwd = $&#123;DASH_BOARD_PASS&#125;</span><br><span class="line">log_file = /frp/frps.log</span><br><span class="line">log_level = info</span><br><span class="line">log_max_days = 3</span><br><span class="line">disable_log_color = false</span><br><span class="line">token = $&#123;FRPC_PASS&#125;</span><br><span class="line">allow_ports = 4000-50000</span><br></pre></td></tr></table></figure><ol start="2"><li>在 NAS 管理界面左上角菜单中选择 docker，在注册表中搜索下载 stilleshan&#x2F;frps。</li><li>在映像中找到下载完的镜像，点击启动。<ol><li>选择高级设置，开启自动重新启动选项。</li><li>存储空间中选择添加文件，选择 <code>/homes/hanlabadmin/frps.ini</code>，装载路径设为 <code>/frp/frps.ini</code> ，同样建立一个空的 frps.log 文件也加载上去方便查看转发记录。</li><li>端口设置中，添加 7000, 7500 和其他用户要求的 RELAY_PORT 端口，本地端口和容器端口建议保持一致，容器端口必须在 4000 到 50000 之间。用户的端口由管理员手动添加，每次添加新端口都需要重新启动 docker 镜像，这是为了防止随意建立过多连接，frpc 文件中存储有 FRPC_PASS 容易被人窃取。</li><li>完成配置后启动，可以在用浏览器打开 <code>$&#123;NAS_IP&#125;:7500</code> 输入 frps 配置文件中的 dashboard 用户名和密码查看运行情况。</li></ol></li><li>在服务器上的用户使用命令 frpc -i frpc.ini 建立连接，其中的配置如下，修改 SESSION_NAME 为用户自定义名称，LOCAL_PORT 为北极星上的应用的监听端口，RELAY_PORT 是用于访问的 NAS 端口。</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 7000</span><br><span class="line">server_addr = $&#123;NAS_IP&#125;</span><br><span class="line">token = $&#123;FRPC_PASS&#125;</span><br><span class="line"></span><br><span class="line">[$&#123;SESSION_NAME&#125;]</span><br><span class="line">local_port = $&#123;LOCAL_PORT&#125;</span><br><span class="line">remote_port = $&#123;RELAY_PORT&#125;</span><br></pre></td></tr></table></figure><ol start="5"><li>打开浏览器访问 <code>$&#123;NAS_IP&#125;:&#123;$RELAY_PORT&#125;</code> 即可访问服务器目录。</li></ol><h2 id="debug-上的连接"><a href="#debug-上的连接" class="headerlink" title="debug 上的连接"></a>debug 上的连接</h2><p>去往 debug 节点需要 login 节点作中转，直接在 login 节点上运行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -f -N -L $&#123;LOCAL_PORT&#125;:localhost:$&#123;DEBUG_PORT&#125; $&#123;DEBUG_HOST&#125;</span><br></pre></td></tr></table></figure><p>DEBUG_HOST 一般是 debug01、debug02 和 debuggpu01。</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="2023/06/19/web">web</a></p><p><img src="S:\BlogProject\blog\source_posts\test\1.png" alt="1"></p><a href="/2023/06/19/NAS-Guide/" title="NAS Guide">NAS Guide</a><a href="/2023/06/19/hpc/" title="北极星自动登陆脚本">北极星脚本</a>]]></content>
       
       
       
         <tags>
             
             <tag> test </tag>
-            
-            <tag> server </tag>
             
         </tags>
       
@@ -53,19 +57,6 @@
             <tag> BIOINFO </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2023/06/19/hello-world/"/>
-      <url>/2023/06/19/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
       
     </entry>
     
