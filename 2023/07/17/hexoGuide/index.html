@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="HEXO 博客搭建指北 想继续建设的时候发现完全忘记怎么弄了…   0.将Blog依托于Github 设置一个github repository, 名字修改为 {your_id}.github.io  在文件夹下右键 Git Bash Here: 12git config --global user.name &quot;你的GitHub用户名&quot;git config --global u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客搭建">
+<meta property="og:url" content="http://example.com/2023/07/17/hexoGuide/index.html">
+<meta property="og:site_name" content="Demo Draft">
+<meta property="og:description" content="HEXO 博客搭建指北 想继续建设的时候发现完全忘记怎么弄了…   0.将Blog依托于Github 设置一个github repository, 名字修改为 {your_id}.github.io  在文件夹下右键 Git Bash Here: 12git config --global user.name &quot;你的GitHub用户名&quot;git config --global u">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\hexoGuide\v2-47323ad4490e206aef93a3d68f0670b6_720w.webp">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\hexoGuide\v2-85ba6dda906f22dea4c03df2b47d994b_720w.jpeg">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\hexoGuide\v2-40222b3a295bb692aac22829a8ec3be2_720w.webp">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\hexoGuide\v2-79abfff91af3f520e24cb91acf6aa994_720w.jpeg">
+<meta property="og:image" content="s:\BlogProject\blog\source_posts\hexoGuide\image-20230717164817792.png">
+<meta property="article:published_time" content="2023-07-17T08:41:07.000Z">
+<meta property="article:modified_time" content="2023-07-17T08:48:44.000Z">
+<meta property="article:author" content="r3zgh0st">
+<meta property="article:tag" content="test">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="s:\BlogProject\blog\source_posts\hexoGuide\v2-47323ad4490e206aef93a3d68f0670b6_720w.webp">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>hexo博客搭建</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/06/19/web/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/17/hexoGuide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/17/hexoGuide/&text=hexo博客搭建"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/17/hexoGuide/&is_video=false&description=hexo博客搭建"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo博客搭建&body=Check out this article: http://example.com/2023/07/17/hexoGuide/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/17/hexoGuide/&name=hexo博客搭建&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/17/hexoGuide/&t=hexo博客搭建"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HEXO-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8C%97"><span class="toc-number">1.</span> <span class="toc-text">HEXO 博客搭建指北</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E5%B0%86Blog%E4%BE%9D%E6%89%98%E4%BA%8EGithub"><span class="toc-number">1.1.</span> <span class="toc-text">0.将Blog依托于Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.依赖安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96-%E7%94%9F%E6%88%90%E5%8A%A8%E6%80%81"><span class="toc-number">1.3.</span> <span class="toc-text">2.初始化, 生成动态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Blog%E5%9F%BA%E6%9C%AC%E5%BB%BA%E8%AE%BE"><span class="toc-number">1.4.</span> <span class="toc-text">3.Blog基本建设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BB%E9%A2%98"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A4%B4%E5%83%8F-%E8%83%8C%E6%99%AF%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.头像,背景设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%91%E5%B8%83%E6%96%B0%E9%A1%B5%E9%9D%A2%E5%92%8C%E6%96%87%E7%AB%A0"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.发布新页面和文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%9A%90%E8%97%8F%E6%96%87%E7%AB%A0"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.隐藏文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85"><span class="toc-number">1.4.5.</span> <span class="toc-text">5.添加作者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="toc-number">1.4.6.</span> <span class="toc-text">6.超链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%9A%E5%AE%A2%E5%B1%95%E7%A4%BA"><span class="toc-number">1.5.</span> <span class="toc-text">-1.博客展示</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        hexo博客搭建
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">r3zgh0st</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-17T08:41:07.000Z" class="dt-published" itemprop="datePublished">2023-07-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/test/" rel="tag">test</a>
+    </div>
+
+
+      </span><span class="fa fa-user-o"> </span><span  style="color:#222;"> {{ post.author }}</span> 
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="HEXO-博客搭建指北"><a href="#HEXO-博客搭建指北" class="headerlink" title="HEXO 博客搭建指北"></a>HEXO 博客搭建指北</h2><blockquote>
+<p>想继续建设的时候发现完全忘记怎么弄了… </p>
+</blockquote>
+<h3 id="0-将Blog依托于Github"><a href="#0-将Blog依托于Github" class="headerlink" title="0.将Blog依托于Github"></a>0.将Blog依托于Github</h3><ol>
+<li><p>设置一个github repository, 名字修改为 {your_id}.github.io</p>
+</li>
+<li><p>在文件夹下右键 Git Bash Here:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>再生成ssh密钥文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>回车x3 (不设置密码)</p>
+</li>
+<li><p>在用户文件夹下(Users&#x2F;Name&#x2F;)找到.ssh文件夹, 复制id_rsa.pub密钥</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/settings/keys">https://github.com/settings/keys</a> 新建new SSH Key, 密钥粘贴添加.</p>
+</li>
+<li><p>在Git Bash中检测公钥设置:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里之所以设置GitHub密钥原因是，通过非对称加密的公钥与私钥来完成加密，公钥放置在GitHub上，私钥放置在自己的电脑里。GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了ssh，当你推送的时候，git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
+</blockquote>
+</li>
+<li><p>进入根目录&#x2F;.config.yml (站点配置文件), 修改字段:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:rezinghost/rezinghost.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署插件, 上传.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line">hexo clean </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*绑定域名</p>
+<ul>
+<li>登录到阿里云，进入管理控制台的域名列表，找到你的个性化域名，进入解析.</li>
+</ul>
+<p><img src="S:\BlogProject\blog\source_posts\hexoGuide\v2-47323ad4490e206aef93a3d68f0670b6_720w.webp" alt="img"></p>
+<ul>
+<li><p>添加解析<br>包括添加三条解析记录，192.30.252.153是GitHub的地址，你也可以ping你的 <a target="_blank" rel="noopener" href="http://xxxx.github.io/">http://xxxx.github.io</a> 的ip地址，填入进去。第三个记录类型是CNAME，CNAME的记录值是：你的用户名.<a target="_blank" rel="noopener" href="http://github.io/">http://github.io</a> 这里千万别弄错了。第二步，登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名</p>
+<p><img src="S:\BlogProject\blog\source_posts\hexoGuide\v2-85ba6dda906f22dea4c03df2b47d994b_720w.jpeg" alt="img"><img src="S:\BlogProject\blog\source_posts\hexoGuide\v2-40222b3a295bb692aac22829a8ec3be2_720w.webp" alt="img"></p>
+</li>
+<li><p>点击save保存。第三步，进入本地博客文件夹 ，进入blog&#x2F;source目录下，创建一个记事本文件，输入你的域名，对，只要写进你自己的域名即可。如果带有www，那么以后访问的时候必须带有www完整的域名才可以访问，但如果不带有www，以后访问的时候带不带www都可以访问。所以建议，不要带有www。这里我还是写了www(不建议带有www):</p>
+<p><img src="S:\BlogProject\blog\source_posts\hexoGuide\v2-79abfff91af3f520e24cb91acf6aa994_720w.jpeg" alt="img"></p>
+<p>保存，命名为CNAME ，注意保存成<strong>所有文件</strong>而不是<strong>txt文件</strong>。</p>
+<p>完成这三步，进入blog目录中，按住shift键右击打开命令行，依次输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>这时候打开浏览器在地址栏输入你的个性化域名将会直接进入你自己搭建的网站。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-依赖安装"><a href="#1-依赖安装" class="headerlink" title="1.依赖安装"></a>1.依赖安装</h3><p>Hexo基于Node.js (包含npm)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v #检测</span><br></pre></td></tr></table></figure>
+
+<p>新建的blog根文件夹中打开cmd, 用npm安装Hexo:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-初始化-生成动态"><a href="#2-初始化-生成动态" class="headerlink" title="2.初始化, 生成动态"></a>2.初始化, 生成动态</h3><p>初始化博客:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+
+<p>三个常用命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo g #generate</span><br><span class="line"></span><br><span class="line">hexo s #server预览</span><br><span class="line"></span><br><span class="line">hexo d #deploy</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-Blog基本建设"><a href="#3-Blog基本建设" class="headerlink" title="3.Blog基本建设"></a>3.Blog基本建设</h3><h4 id="1-主题"><a href="#1-主题" class="headerlink" title="1.主题"></a>1.主题</h4><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<p>每一个主题有添加说明.例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置了&quot;next&quot;主题, 在根目录的themes/next下</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>然后打开站点配置文件_config.yml, 修改字段 <code>theme: next</code></p>
+<p>一般来说,主页上各个子页面都是要设置主题的配置文件(根目录&#x2F;themes&#x2F;_config.yml) 进行设置</p>
+<h4 id="2-头像-背景设置"><a href="#2-头像-背景设置" class="headerlink" title="2.头像,背景设置"></a>2.头像,背景设置</h4><p>打开主题配置文件, 修改图片目录.</p>
+<p>我们的图片放在根目录的source&#x2F;images中即可显示.</p>
+<h4 id="3-发布新页面和文章"><a href="#3-发布新页面和文章" class="headerlink" title="3.发布新页面和文章"></a>3.发布新页面和文章</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;菜单项名称&quot;（Menu中要匹配） #根目录source中可找到</span><br><span class="line">hexo n &quot;博客名字&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-隐藏文章"><a href="#4-隐藏文章" class="headerlink" title="4.隐藏文章"></a>4.隐藏文章</h4><p>在站点配置_config.yml加入:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo-hide-posts</span></span><br><span class="line"><span class="attr">hide_posts:</span></span><br><span class="line">  <span class="comment"># 可以改成其他你喜欢的名字</span></span><br><span class="line">  <span class="attr">filter:</span> <span class="string">hidden</span> </span><br><span class="line">  <span class="comment"># 指定你想要传递隐藏文章的位置，比如让所有隐藏文章在存档页面可见</span></span><br><span class="line">  <span class="comment"># 常见的位置有：index, tag, category, archive, sitemap, feed, etc.</span></span><br><span class="line">  <span class="comment"># 留空则默认全部隐藏</span></span><br><span class="line">  <span class="attr">public_generators:</span> []</span><br><span class="line">  <span class="comment"># 为隐藏的文章添加 noindex meta 标签，阻止搜索引擎收录</span></span><br><span class="line">  <span class="attr">noindex:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>在文章的属性中定义 <code>hidden: true</code> 即可隐藏文章。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;Hidden Post&#x27;</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">&#x27;2021/03/05 21:45:14&#x27;</span></span><br><span class="line"><span class="attr">hidden:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p>命令行<code>hexo hidden:list</code>可获取所有隐藏文章列表.</p>
+<h4 id="5-添加作者"><a href="#5-添加作者" class="headerlink" title="5.添加作者"></a>5.添加作者</h4><ol>
+<li><p>you can add author in<code>theme/next/ layout／post.swig</code> before <code>&#123;% if post.comments %&#125;</code></p>
+</li>
+<li><p>add<code>&lt;span&gt; ｜ &lt;/span&gt;&lt;span class=&quot;fa fa-user-o&quot;&gt; &lt;/span&gt;&lt;span  style=&quot;color:#222;&quot;&gt; &#123;&#123; post.author &#125;&#125;&lt;/span&gt; </code></p>
+</li>
+<li><p>and than add ‘author: xx’ in title of<code>source/_posts/xx.md</code><br>like this</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">add</span> <span class="string">author</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2001-08-25</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">author</span> <span class="string">name</span></span><br><span class="line"><span class="attr">category:</span> <span class="string">add</span> <span class="string">author</span></span><br><span class="line"><span class="attr">tag:</span> <span class="string">next</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="6-超链接"><a href="#6-超链接" class="headerlink" title="6.超链接"></a>6.超链接</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% post_link firstPart.md &#123;Title e.b. 第一部分&#125; %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>***千万不要在hexo post的md文档中直接加入<code>&#123;% xx xxxxx %&#125;</code>的, 这是hexo内置超链接!!</p>
+<p><img src="S:\BlogProject\blog\source_posts\hexoGuide\image-20230717164817792.png" alt="image-20230717164817792"></p>
+<h3 id="1-博客展示"><a href="#1-博客展示" class="headerlink" title="-1.博客展示"></a>-1.博客展示</h3><p><a href="https://link.zhihu.com/?target=http://jmyblog.top/">…Miss.j BlogDiary…</a></p>
+<p><a href="https://link.zhihu.com/?target=http://ibb.chaodamiao.com/">RILWEIC</a></p>
+<p><a href="https://link.zhihu.com/?target=http://blog.sunxinfei.com/">Xin’s Notes</a></p>
+<p><a href="https://link.zhihu.com/?target=https://guguant.github.io/">飞鸟与鱼</a></p>
+<p><a href="https://link.zhihu.com/?target=http://www.fuck-goods.tk/">无名博客</a></p>
+<p><a href="https://link.zhihu.com/?target=http://helloqa.com/">iTesting软件测试知识分享</a></p>
+<p><a href="https://link.zhihu.com/?target=http://bolg.upsky.top/">赵小源的个人博客</a></p>
+<p><a href="https://link.zhihu.com/?target=http://www.huajiayi.top/">华嘉熠’s Blog</a></p>
+<p><a href="https://link.zhihu.com/?target=http://asmire.site/">Cocoon</a></p>
+<p><a href="https://link.zhihu.com/?target=https://luoshaoxiong.github.io/">罗少雄’s Blog</a></p>
+<p><a href="https://link.zhihu.com/?target=https://lruihao.github.io/">李四啊_</a></p>
+<p><strong>其他优秀个人博客展示：</strong></p>
+<p><a href="https://link.zhihu.com/?target=https://www.dandyweng.com/">翁天信 · Dandy Weng</a> <a href="https://link.zhihu.com/?target=http://chaoxuprime.com/">chaoxuprim</a> <a href="https://link.zhihu.com/?target=http://kenjiendo.com/">KENJI ENDO</a> <a href="https://link.zhihu.com/?target=http://shenzekun.cn/">Moorez</a> <a href="https://link.zhihu.com/?target=https://codesky.me/">CodeSky 代码之空</a> <a href="https://link.zhihu.com/?target=http://www.helloshawn.cn/">大江东去</a> <a href="https://link.zhihu.com/?target=http://iconmoon.com/">UI Design Portfolio of JJ Ying</a> <a href="https://link.zhihu.com/?target=http://www.jeyzhang.com/">JeyZhang</a> <a href="https://link.zhihu.com/?target=http://blog.lightina.cn/">jacklightChen | 得到的都是侥幸</a> <a href="https://link.zhihu.com/?target=https://qingpei.me/">edwardtoday</a> <a href="https://link.zhihu.com/?target=http://rafaltomal.com/">Rafal Tomal - Web Designer and Genesis Developer</a> <a href="https://link.zhihu.com/?target=http://strml.net/">Projects and Work</a> <a href="https://link.zhihu.com/?target=http://miaoxiaoer.com/">绘画爱好者</a> <a href="https://link.zhihu.com/?target=http://ursocute.github.io/">万世奇的博客</a> [Guillermo Rauch](</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/readtest/">CZX_plz_read_this</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HEXO-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8C%97"><span class="toc-number">1.</span> <span class="toc-text">HEXO 博客搭建指北</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E5%B0%86Blog%E4%BE%9D%E6%89%98%E4%BA%8EGithub"><span class="toc-number">1.1.</span> <span class="toc-text">0.将Blog依托于Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">1.依赖安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96-%E7%94%9F%E6%88%90%E5%8A%A8%E6%80%81"><span class="toc-number">1.3.</span> <span class="toc-text">2.初始化, 生成动态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Blog%E5%9F%BA%E6%9C%AC%E5%BB%BA%E8%AE%BE"><span class="toc-number">1.4.</span> <span class="toc-text">3.Blog基本建设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BB%E9%A2%98"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A4%B4%E5%83%8F-%E8%83%8C%E6%99%AF%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.头像,背景设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8F%91%E5%B8%83%E6%96%B0%E9%A1%B5%E9%9D%A2%E5%92%8C%E6%96%87%E7%AB%A0"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.发布新页面和文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%9A%90%E8%97%8F%E6%96%87%E7%AB%A0"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.隐藏文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%B7%BB%E5%8A%A0%E4%BD%9C%E8%80%85"><span class="toc-number">1.4.5.</span> <span class="toc-text">5.添加作者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="toc-number">1.4.6.</span> <span class="toc-text">6.超链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%9A%E5%AE%A2%E5%B1%95%E7%A4%BA"><span class="toc-number">1.5.</span> <span class="toc-text">-1.博客展示</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/17/hexoGuide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/17/hexoGuide/&text=hexo博客搭建"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/17/hexoGuide/&is_video=false&description=hexo博客搭建"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo博客搭建&body=Check out this article: http://example.com/2023/07/17/hexoGuide/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/17/hexoGuide/&title=hexo博客搭建"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/17/hexoGuide/&name=hexo博客搭建&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/17/hexoGuide/&t=hexo博客搭建"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    r3zgh0st
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/readtest/">CZX_plz_read_this</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
